@@ -6,6 +6,6 @@ Team Name : Stealth
 Team Members :
    * L.G.S. Clarance
    * V. Kurrshanth
-   * C.M.C.C. Mirand
+   * C.M.C.C. Miranda
    * R. Sairisan
 
