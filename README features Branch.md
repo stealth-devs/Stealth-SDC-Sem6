@@ -1,5 +1,8 @@
 # Stealth-SDC-Sem6
-Illustrator Vector Art has been added
-1. All animals
-2. Main Menu with GIF
+
+Main menu scripts has been added for simple animation using two sprites
+
+Unity Scene has been added
+
+
 
