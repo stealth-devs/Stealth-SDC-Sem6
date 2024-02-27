@@ -3,6 +3,7 @@ This branch used to get game art files such as:
     1. Illustrator drawings
     2. Photoshop designs
     3. Sprites and Models 
+    4. And other GUI designs
 
 
 Currently follwings are uploaded......
