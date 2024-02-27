@@ -1,5 +1,5 @@
 # Stealth-SDC-Sem6
-This branch used to get game art files sich as:
+This branch used to get game art files such as:
     1. Illustrator drawings
     2. Photoshop designs
     3. Sprites and Models 
