@@ -1,1 +1,1 @@
-Accepts merges from Feature/Bugfix, Release and Hotfix
+Accepts merges from Feature, Release and Hotfix
