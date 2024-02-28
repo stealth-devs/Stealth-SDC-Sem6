@@ -2,11 +2,11 @@
 
 public class UserProfile
 {
-    public string firstName;
-    public string lastName;
-    public string userName;
-    public string nic;
-    public string phoneNumber;
-    public string email;
-    public string profilePictureUrl;
+    public string FirstName;
+    public string LastName;
+    public string UserName;
+    public string Nic;
+    public string PhoneNumber;
+    public string Email;
+    public string ProfilePictureUrl;
 }

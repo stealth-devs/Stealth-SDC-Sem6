@@ -1,39 +1,52 @@
 using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class PlayerAthentication : MonoBehaviour
+public class PlayerAuthentication : MonoBehaviour
 {
     public TextMeshProUGUI debugText;
-    string jwtKey = null;
 
-    // Start is called before the first frame update
+    // Property to check if the user is authenticated
+    public static bool IsAuthenticated { get; private set; }
+
     void Start()
     {
-        jwtKey = ApiController.getJwtKey();
-        while (jwtKey == null)
+        StartCoroutine(AuthenticateAndSaveProfile());
+    }
+
+    IEnumerator AuthenticateAndSaveProfile()
+    {
+        // Authenticate the user
+        string jwtKey = ApiController.GetJwtKey();
+
+        if (jwtKey == null)
         {
-            jwtKey = ApiController.getJwtKey();
+            debugText.text = "Error occurred during JWT key retrieval";
+            yield break; // Exit the coroutine on error
         }
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
+        // Save the user profile
+        UserProfile userProfile = ApiController.GetUserProfile(jwtKey);
 
-    }
+        if (userProfile == null)
+        {
+            debugText.text = "Error occurred during user profile retrieval";
+            yield break; // Exit the coroutine on error
+        }
 
-    public void SaveUserProfile()
-    {
-        UserProfile userProfile = ApiController.getUserProfile(jwtKey);
-        PlayerPrefs.SetString("firstName", userProfile.firstName);
-        PlayerPrefs.SetString("lastName", userProfile.lastName);
-        PlayerPrefs.SetString("userName", userProfile.userName);
-        PlayerPrefs.SetString("nic", userProfile.nic);
-        PlayerPrefs.SetString("phoneNumber", userProfile.phoneNumber);
-        PlayerPrefs.SetString("email", userProfile.email);
-        PlayerPrefs.SetString("profilePictureUrl", userProfile.profilePictureUrl);
-        PlayerPrefs.SetString("jwtKey", jwtKey);
+        // Display the user profile
+        debugText.text = $"Welcome {userProfile.FirstName} {userProfile.LastName}!";
+
+        // Save the user profile data
+        PlayerPrefs.SetString("firstName", userProfile.FirstName);
+        PlayerPrefs.SetString("lastName", userProfile.LastName);
+        PlayerPrefs.SetString("userName", userProfile.UserName);
+        PlayerPrefs.SetString("nic", userProfile.Nic);
+        PlayerPrefs.SetString("phoneNumber", userProfile.PhoneNumber);
+        PlayerPrefs.SetString("email", userProfile.Email);
+        PlayerPrefs.SetString("profilePictureUrl", userProfile.ProfilePictureUrl);
+
+        // Set authentication status to true
+        IsAuthenticated = true;
     }
 }

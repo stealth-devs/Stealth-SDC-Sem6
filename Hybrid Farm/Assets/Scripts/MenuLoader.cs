@@ -1,47 +1,67 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class MenuLoader : MonoBehaviour
 {
     public Animator transition;
     public float transitionTime = 0.5f;
 
-    // Start is called before the first frame update
     void Start()
     {
         if (SceneManager.GetActiveScene().buildIndex == 0)
         {
-            // Load the main menu
             StartCoroutine(DelayedLoadNextScene());
+        }
+        else if (SceneManager.GetActiveScene().buildIndex == 1)
+        {
+            StartCoroutine(WaitForAuthenticationAndLoadNextScene());
         }
     }
 
     IEnumerator DelayedLoadNextScene()
     {
-        // Wait for 3 seconds
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(3f); // Wait for 3 seconds
 
-        // Load the main menu
+        LoadNextScene();
+    }
+
+    IEnumerator WaitForAuthenticationAndLoadNextScene()
+    {
+        while (!PlayerAuthentication.IsAuthenticated)
+        {
+            yield return null; // Wait until authenticated
+        }
+
+        yield return new WaitForSeconds(3f); // Additional delay (optional)
+
         LoadNextScene();
     }
 
     public void LoadNextScene()
     {
-        StartCoroutine(
-                // Load the main menu
-                LoadMenu(SceneManager.GetActiveScene().buildIndex + 1));
+        StartCoroutine(LoadSceneWithTransition(SceneManager.GetActiveScene().buildIndex + 1));
     }
 
-    IEnumerator LoadMenu(int sceneIndex)
+    IEnumerator LoadSceneWithTransition(int sceneIndex)
     {
-        // Play the animation
-        transition.SetTrigger("Start");
+        PlayTransitionAnimation();
 
-        // Wait for 3 seconds
-        yield return new WaitForSeconds(transitionTime);
+        yield return new WaitForSeconds(transitionTime); // Wait for transition animation
 
-        // Load the main menu
         SceneManager.LoadScene(sceneIndex);
+    }
+
+    void PlayTransitionAnimation()
+    {
+        if (transition != null)
+        {
+            transition.SetTrigger("Start");
+        }
+        else
+        {
+            Debug.LogError("Transition animator is not assigned.");
+        }
     }
 }
