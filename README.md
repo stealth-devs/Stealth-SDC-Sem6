@@ -16,5 +16,5 @@ Team Members :
 1. Clone the repository
 2. Check out the `develop` branch
 3. Open the project folder `HybridFarm` in Unity
-4. Open the `1.StealthInto` scene
+4. Open the `1.StealthInto` scene from the `Scenes` folder in `Assets`
 5. Press the play button in Unity
