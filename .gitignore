@@ -73,3 +73,5 @@ HybridFarm/[Aa]ssets/[Ss]treamingAssets/aa/*
 HybridFarm/.vscode/extensions.json
 HybridFarm/.vscode/launch.json
 HybridFarm/.vscode/settings.json
+
+.fake
