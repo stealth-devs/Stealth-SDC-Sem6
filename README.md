@@ -14,6 +14,7 @@ Team Members :
 ## To run the game
 
 1. Clone the repository
-2. Open the project folder `HybridFarm` in Unity
-3. Open the `1.StealthInto` scene
-4. Press the play button in Unity
+2. Check out the `develop` branch
+3. Open the project folder `HybridFarm` in Unity
+4. Open the `1.StealthInto` scene
+5. Press the play button in Unity
